@@ -10,17 +10,32 @@ class BaseContact:
        self.phone = phone
    def __repr__(self):
        return f'{self.name}, {self.address}, {self.email}, {self.phone}'
-   def contact (self):
-       return f' Kontaktuj się z {self.name}, adres {self.address}, email {self.email}, telefon {self.phone}'
+
+   def contact(self):
+       return f' Kontaktuj się z {self.name}, adres {self.address}, email {self.email}, telefon {self.contact_phone}'
+
    @property
    def label_lenght (self):
-       return f'Długosć imienia {len(self.name)}'
+       return len(self.name)
+
+   @property
+   def contact_phone (self):
+       return self.phone
 
 class BuisenesContact(BaseContact):
-    def __init__(self, job, company, *args, **kwargs):
+    def __init__(self, job, company, phone2, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.job = job
         self.company = company
+        self.phone2 = phone2
+
+    @property
+    def contact_phone(self):
+        return self.phone2
+
+    def contact(self):
+        return f' Kontaktuj się z {self.name}, adres {self.address}, email {self.email}, telefon {self.contact_phone}'
+
 
 def create_contacts():
     card_list = []
@@ -33,7 +48,7 @@ def create_contacts():
     else:
         for i in range(b):
             card_list.append(BuisenesContact(name=fake.name(), address=fake.address(), email=fake.email(), phone=fake.phone_number(), job=fake.job(),
-                                             company=fake.company()))
+                                             company=fake.company(), phone2=fake.phone_number()))
         sorted(card_list, key=lambda BuisenesContact: BuisenesContact.name)
 
     return print(card_list)
