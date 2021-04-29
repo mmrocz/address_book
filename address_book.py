@@ -39,7 +39,7 @@ class BuisenesContact(BaseContact):
 
 def create_contacts():
     card_list = []
-    a = int(input('podaj typ wizytówki 2 biznesowa, 1 zwykła...'))
+    a = int(input('podaj typ wizytówki 2 biznes, 1 zwykła...'))
     b = int(input('podaj ilość wygenerowanych wizytówek ...'))
     if a == 1:
         for i in range(b):
